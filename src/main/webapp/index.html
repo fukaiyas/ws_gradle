@@ -3,7 +3,7 @@
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script>
     $(function(){
-        var org = locatioin.origin.replace(/^http/, 'ws');
+        var org = location.origin.replace(/^http/, 'ws');
         var ws = new WebSocket(org + "/websocket_sample/sample/master");
         ws.onmessage = function(message){
             $("div#test").text(message.data);
