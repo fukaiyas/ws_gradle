@@ -1,0 +1,23 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script>
+    $(function(){
+        var ws = new WebSocket("ws://localhost:8080/websocket_sample/sample/master");
+        ws.onmessage = function(message){
+            $("div#test").text(message.data);
+        };
+        $("input#input").keyup(function(){
+            ws.send($(this).val());
+        });
+        $.unload(function(){
+            ws.close();
+        });
+    })
+</script>
+</head>
+<body>
+<input id="input" type="text"/>
+<div id="test">TEST</div>
+</body>
+</html>

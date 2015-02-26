@@ -1,0 +1,30 @@
+apply plugin: 'war'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+war.baseName = 'websocket_sample'
+
+mainClassName = 'com.bugworm.sample.Server'
+applicationName = 'websocket_sample'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'org.glassfish.main.extras:glassfish-embedded-all:4.1'
+}
+
+task stage(dependsOn : ['clean', 'war', 'installApp'])
+
+task rungf(dependsOn : ['classes', 'war'], type: JavaExec){
+    main = 'com.bugworm.sample.Server'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+//http://localhost:8080/websocket_sample/index.html
+//http://localhost:8080/websocket_sample/index_child.html
