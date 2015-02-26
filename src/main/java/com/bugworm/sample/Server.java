@@ -9,7 +9,7 @@ import java.io.File;
 public class Server {
     public static void main(String... args)throws Exception{
         System.out.println("---------------Start------------------------");
-        int port = 8080;
+        int port = 80;
         GlassFishProperties prop = new GlassFishProperties();
         prop.setPort("http-listener", port);
 
